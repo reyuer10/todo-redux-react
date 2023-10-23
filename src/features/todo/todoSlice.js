@@ -45,15 +45,22 @@ export const todoSlice = createSlice({
     },
 
     update_todo: (state, action) => {
-        const { todoId, newValueUpdate } = action.payload; 
-        return {
-            ...state, list: state.list.map((todo) => todo.id === todoId ? {
-                ...state, newValue: newValueUpdate
-            } : todo)
-        }
-    }
+      const { todoId, newValueUpdate } = action.payload;
+      return {
+        ...state,
+        list: state.list.map((todo) =>
+          todo.id === todoId
+            ? {
+                ...todo,
+                newValue: newValueUpdate,
+              }
+            : todo
+        ),
+      };
+    },
   },
 });
 
-export const { add_todo, delete_todo, complete_todo, update_todo } = todoSlice.actions;
+export const { add_todo, delete_todo, complete_todo, update_todo } =
+  todoSlice.actions;
 export default todoSlice.reducer;
